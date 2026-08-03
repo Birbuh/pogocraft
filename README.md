@@ -1,2 +1,1 @@
-# pogocraft
-Minecraft HK Pogo Mod. Purely fan-made.
+# TODO: FOR TECKO: MAKE A DESCRIPTION.

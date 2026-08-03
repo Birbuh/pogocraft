@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.gradle.userdev' version '7.0.167'
+}
+
+group = project.property('mod_group_id')
+version = project.property('mod_version')
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = project.property('neo_version')
+}
+
+sourceSets {
+    main.resources.srcDir 'src/generated/resources'
+}
+
+repositories {
+    // Add mod or library Maven repositories here when dependencies are needed.
+}
+
+dependencies {
+    implementation "net.neoforged:neoforge:${project.property('neo_version')}"
+}
+
+tasks.withType(ProcessResources).configureEach {
+    def properties = [
+        minecraft_version: project.property('minecraft_version'),
+        neo_version: project.property('neo_version'),
+        mod_id: project.property('mod_id'),
+        mod_name: project.property('mod_name'),
+        mod_license: project.property('mod_license'),
+        mod_version: project.property('mod_version'),
+        mod_group_id: project.property('mod_group_id')
+    ]
+
+    inputs.properties(properties)
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand(properties)
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    archiveBaseName = project.property('mod_id')
+}
