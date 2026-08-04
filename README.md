@@ -1,5 +1,5 @@
 PogoCraft
-===
+=======
 This is a mod where you can pogo on the ground or any object type in Minecraft. This is directly inspired by Hollow Knight
 
 Below is default NeoForge mod template stuff
